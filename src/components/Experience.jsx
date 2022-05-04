@@ -1,8 +1,13 @@
 import React from 'react'
+import Item from './Item'
 
-const Experience = () => {
+const Experience = ({list}) => {
+  const displayList = list.filter(item => item.category.name === 'experience')
+  console.log("experience List", displayList)
   return (
-    <div>Experience</div>
+    <div>
+      {displayList.map(item => <Item key= {item.id} item ={item}/>)}
+    </div>
   )
 }
 

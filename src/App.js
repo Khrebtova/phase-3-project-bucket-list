@@ -10,7 +10,7 @@ import { dataURL } from './Global';
 
 const App = () => {  
   const [list, setList] = React.useState([]);
-  const [displayList, setDisplayList] = React.useState([]);
+  // const [displayList, setDisplayList] = React.useState([]);
   const [allCategories, setAllCategories] = React.useState([]);
 
   React.useEffect(() => {
@@ -27,10 +27,13 @@ const App = () => {
     .catch(err => console.log(err))
   }, []);
 
+  let displayList = list;
+  
+
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header categories={allCategories}/>
         <NewItemForm />
         <Routes>
           <Route path="/" element={<Homepage list={displayList} />} />

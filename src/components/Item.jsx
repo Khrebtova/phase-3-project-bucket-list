@@ -1,8 +1,16 @@
 import React from 'react'
 
-const Item = () => {
+const Item = ({item}) => {
   return (
-    <div>Item</div>
+    <li>
+      <h3>{item.name}</h3>
+      <p>{item.category.name}</p>
+      <label>
+        <input type="checkbox" checked={item.completed}></input>
+        Completed
+      </label>
+      <button id="delete">Delete</button>
+    </li>
   )
 }
 
