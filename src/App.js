@@ -29,6 +29,15 @@ const App = () => {
 
   let displayList = list;
   
+  const handleDelete = (id) => {
+    let newList = list.filter(item => item.id !== id);
+    setList(newList);
+  }
+
+  const handleEdit = (updatedItem) => {
+    let newList = list.map(item => item.id === updatedItem.id ? updatedItem : item);
+    setList(newList);
+  }
 
   return (
     <div className="App">
@@ -37,9 +46,9 @@ const App = () => {
         <NewItemForm />
         <Routes>
           <Route path="/" element={<Homepage list={displayList} />} />
-          <Route path="/travel" element={<Travel list={displayList} />} />
-          <Route path="/lifestyle" element={<Lifestyle list={displayList} />} />
-          <Route path="/experience" element={<Experience list={displayList} />} />
+          <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete}/>} onHandleEditItem={handleEdit}/>
+          <Route path="/lifestyle" element={<Lifestyle list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
+          <Route path="/experience" element={<Experience list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
         </Routes>
       </Router>
     </div>

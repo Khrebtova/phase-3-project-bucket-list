@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-const Experience = ({list}) => {
+const Experience = ({list, onHandleDelete, onHandleEditItem}) => {
   const displayList = list.filter(item => item.category.name === 'experience')
   
   return (
@@ -15,7 +15,7 @@ const Experience = ({list}) => {
           Experience
         </Typography>
         <List sx={{ ml: 10, mb: 10, width: '100%', maxWidth: 400, bgcolor: 'background.paper' }}>
-          {displayList.map(item => <Item key= {item.id} item ={item}/>)}
+          {displayList.map(item => <Item key= {item.id} item ={item} onHandleDelete={onHandleDelete} onHandleEditItem={onHandleEditItem}/>)}
         </List>        
       </Grid>
     </Box>

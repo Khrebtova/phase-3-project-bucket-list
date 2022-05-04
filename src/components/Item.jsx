@@ -1,4 +1,5 @@
 import React from 'react'
+import { dataURL, headers } from '../Global';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -7,26 +8,45 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 
 
-const Item = ({item}) => {
+const Item = ({item, onHandleDelete, onHandleEditItem}) => {
+  let markedComplete = item.completed;
+
+  const handleDelete = () => {
+    console.log(`delete ${item.name}`)
+    fetch(`${dataURL}/${item.id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => onHandleDelete(data.id))
+    .catch(err => console.log(err))  
+  }
+
+  const handleEdit = () => {   
+    fetch(`${dataURL}/${item.id}`, {
+      method: 'PATCH',
+      headers: headers,
+      body: JSON.stringify({
+        "completed": !markedComplete
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      onHandleEditItem(data)
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <ListItem>
-      <Checkbox label="Enable secondary text"/>
-      <ListItemText primary={item.name} secondary={item.completed? "WOOO! I've Done it" : "can't wait to do this"} />
-      <IconButton aria-label="delete" size="small">
+      <Checkbox onChange={handleEdit} checked={markedComplete}/>
+      <ListItemText primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "can't wait to do this"} />
+      <IconButton aria-label="delete" size="small" onClick={handleDelete}>
         <DeleteIcon fontSize="small" />
       </IconButton>
     </ListItem>
 
 
-    // <li>
-    //   <h3>{item.name}</h3>
-    //   <p>{item.category.name}</p>
-    //   <label>
-    //     <input type="checkbox" checked={item.completed}></input>
-    //     Completed
-    //   </label>
-    //   <button id="delete">Delete</button>
-    // </li>
   )
 }
 
