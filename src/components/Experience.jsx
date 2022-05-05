@@ -1,15 +1,12 @@
 import React from 'react'
 import Item from './Item'
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import { Grid } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import {Box, List, Grid, Typography} from '@mui/material';
 
 const Experience = ({list, onHandleDelete, onHandleEditItem}) => {
   const displayList = list.filter(item => item.category.name === 'experience')
   
   return (
-    <Box sx={{maxWidth: 600, backgroundColor: 'success.light', mb: 1 }}>
+    <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, backgroundColor: 'success.light', mb: 1 }}>
       <Grid >
         <Typography sx={{ ml: 10, mt: 4, mb: 4, color: "background.paper"}} variant="h3" component="div">
           Experience

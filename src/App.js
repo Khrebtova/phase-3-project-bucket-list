@@ -49,8 +49,8 @@ const App = () => {
         <Header categories={allCategories}/>
         <NewItemForm categories={allCategories} onHandleAddItem={handleAddItem}/>
         <Routes>
-          <Route path="/" element={<Homepage list={displayList} />} />
-          <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete}/>} onHandleEditItem={handleEdit}/>
+          <Route path="/" element={<Homepage  />} />
+          <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
           <Route path="/lifestyle" element={<Lifestyle list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
           <Route path="/experience" element={<Experience list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
         </Routes>
