@@ -10,7 +10,6 @@ import { dataURL } from './Global';
 
 const App = () => {  
   const [list, setList] = React.useState([]);
-  // const [displayList, setDisplayList] = React.useState([]);
   const [allCategories, setAllCategories] = React.useState([]);
 
   React.useEffect(() => {
@@ -48,7 +47,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Header categories={allCategories}/>
-        <NewItemForm onHandleAddItem={handleAddItem}/>
+        <NewItemForm categories={allCategories} onHandleAddItem={handleAddItem}/>
         <Routes>
           <Route path="/" element={<Homepage list={displayList} />} />
           <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete}/>} onHandleEditItem={handleEdit}/>

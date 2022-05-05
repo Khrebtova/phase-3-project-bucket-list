@@ -1,7 +1,8 @@
 import React from 'react'
 import { dataURL, headers } from '../Global'
 import { useNavigate } from 'react-router-dom';
-import { Box, TextField, Button, Select, InputLabel, MenuItem, FormHelperText, FormControl, FormGroup, FormLabel } from '@mui/material'
+import Box from '@mui/material/Box';
+// import { Box, TextField, Button, Select, InputLabel, MenuItem, FormHelperText, FormControl, FormGroup, FormLabel } from '@mui/material'
 
 
 const NewItemForm = ({onHandleAddItem}) => {
@@ -13,14 +14,12 @@ const NewItemForm = ({onHandleAddItem}) => {
   }
   const [newItem, setNewItem] = React.useState(defaultData)
   
-  
   const handleChange = (e) => {
     let key = e.target.name;
     let value = e.target.value;
     let formData = { ...newItem, [key]: value };
-    setNewItem(formData);
-    console.log(formData);
-  }
+    setNewItem(formData);  
+  } 
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -33,16 +32,17 @@ const NewItemForm = ({onHandleAddItem}) => {
     .then(res => res.json())
     .then(data => {
       onHandleAddItem(data)
-        if (newItem.category_id === 1) {navigate('/travel')}
-        else if (newItem.category_id === 2){navigate('/lifestyle')} 
-        else {navigate('/experience')}    
+      if (data.category_id === 1) { navigate('/travel') }
+      else if (data.category_id === 2){ navigate('/lifestyle')} 
+      else {navigate('/experience')}    
     })
     .catch(err => console.log(err))
+    
     setNewItem(defaultData) 
   }
 
   return (
-    <div>
+    <Box sx={{maxWidth: 600, height: 50, backgroundColor: 'primary.main', mb: 1, mt: 2 }}>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="enter new item" onChange={handleChange} value = {newItem.name}/>
         <label>
@@ -55,7 +55,7 @@ const NewItemForm = ({onHandleAddItem}) => {
         </label>        
         <button type="submit">Add</button>
       </form>
-    </div>
+    </Box >
 
     // <div>
     //   <FormControl sx={{ m: 1, minWidth: 120 }} required={true} row >
