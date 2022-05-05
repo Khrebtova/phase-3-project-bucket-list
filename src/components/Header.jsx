@@ -1,19 +1,24 @@
 import React from 'react'
-import { Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import {Box, Button, styled, Stack } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
-    
+    const navigate = useNavigate();
+    const handleClick = (e) => {
+        console.log(e.target.name)
+        navigate(`/${e.target.name}`)
+    }
         
     return (
 
-        <nav className='navbar'>
-            <Button variant="outlined"><Link to="/">Home</Link></Button>
-            
-            <Button variant="outlined"><Link to="/travel">Travel</Link></Button>
-            <Button variant="outlined"><Link to="/lifestyle">Lifestyle</Link></Button>
-            <Button variant="outlined"><Link to="/experience">Experience</Link></Button>       
-        </nav>
+        <Box sx={{maxWidth: 600, mb: 1, mt: 1}}>
+            <Stack direction="row" spacing={8}>
+                <Button variant="contained" size="large" name="home" onClick={handleClick} >Home</Button>            
+                <Button variant="contained" size="large" name="travel" onClick={handleClick} >Travel</Button>
+                <Button variant="contained" size="large" name="lifestyle" onClick={handleClick} >LifeStyle</Button>
+                <Button variant="contained" size="large" name="experience" onClick={handleClick} >Experience</Button>
+            </Stack>
+        </Box>
     )
 }
 
