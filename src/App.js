@@ -39,11 +39,16 @@ const App = () => {
     setList(newList);
   }
 
+  const handleAddItem = (newItem) => {
+    let newList = [...list, newItem];
+    setList(newList);
+  }
+
   return (
     <div className="App">
       <Router>
         <Header categories={allCategories}/>
-        <NewItemForm />
+        <NewItemForm onHandleAddItem={handleAddItem}/>
         <Routes>
           <Route path="/" element={<Homepage list={displayList} />} />
           <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete}/>} onHandleEditItem={handleEdit}/>
