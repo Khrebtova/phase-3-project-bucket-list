@@ -6,7 +6,6 @@ const Header = () => {
     const navigate = useNavigate();
     
     const handleClick = (e) => {
-        console.log(e.target.name)
         e.target.name === 'home' ? navigate('/') : navigate(`/${e.target.name}`)
      }
         

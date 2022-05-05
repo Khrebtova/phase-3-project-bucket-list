@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { dataURL, headers } from '../Global';
 
 import ListItem from '@mui/material/ListItem';
@@ -10,6 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 const Item = ({item, onHandleDelete, onHandleEditItem}) => {
   let markedComplete = item.completed;
+  
 
   const handleDelete = () => {
     console.log(`delete ${item.name}`)
@@ -31,22 +32,21 @@ const Item = ({item, onHandleDelete, onHandleEditItem}) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       onHandleEditItem(data)
     })
     .catch(err => console.log(err))
   }
 
+
   return (
-    <ListItem>
-      <Checkbox onChange={handleEdit} checked={markedComplete}/>
-      <ListItemText primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "can't wait to do this"} />
-      <IconButton aria-label="delete" size="small" onClick={handleDelete}>
-        <DeleteIcon fontSize="small" />
-      </IconButton>
-    </ListItem>
-
-
+    <ListItem id={item.id}>
+        <Checkbox onChange={handleEdit} checked={markedComplete}/>
+        <ListItemText className="name" primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "can't wait to do this"} />
+       
+        <IconButton aria-label="delete" size="small" onClick={handleDelete}>
+          <DeleteIcon fontSize="small" />
+        </IconButton>
+      </ListItem>
   )
 }
 
