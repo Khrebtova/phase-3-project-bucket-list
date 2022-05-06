@@ -32,21 +32,23 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    fetch(dataURL, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(newItem)
-    })
-    .then(res => res.json())
-    .then(data => {
-      onHandleAddItem(data)
-      if (data.category_id === 1) { navigate('/travel') }
-      else if (data.category_id === 2){ navigate('/lifestyle')} 
-      else {navigate('/experience')}    
-    })
-    .catch(err => console.log(err))
-    
+    if (newItem.name === '') {
+      alert('Please enter a name')
+    } else {
+      fetch(dataURL, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(newItem)
+      })
+      .then(res => res.json())
+      .then(data => {
+        onHandleAddItem(data)
+        if (data.category_id === 1) { navigate('/travel') }
+        else if (data.category_id === 2){ navigate('/lifestyle')} 
+        else {navigate('/experience')}    
+      })
+      .catch(err => console.log(err))
+    }
     setNewItem(defaultData) 
   }
 
