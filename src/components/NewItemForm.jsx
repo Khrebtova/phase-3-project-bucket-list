@@ -1,9 +1,8 @@
 import React from 'react'
 import { dataURL, headers } from '../Global'
 import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { TextField, Button, Select, InputLabel, MenuItem, FormHelperText, FormControl, FormGroup, FormLabel, OutlinedInput } from '@mui/material'
+import { Box, TextField, Button, Select, MenuItem, FormControl } from '@mui/material'
 
 const SubmitButton = styled(Button)({
   backgroundColor: 'paper',
@@ -16,10 +15,12 @@ const SubmitButton = styled(Button)({
 
 const NewItemForm = ({onHandleAddItem, categories}) => {
   const navigate = useNavigate();  
+  
   const defaultData = {
     "name": "",
     "category_id": "1"
   }
+
   const [newItem, setNewItem] = React.useState(defaultData)
     
   const handleChange = (e) => {
@@ -65,24 +66,8 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
         <FormControl sx={{ m: 1, width: 50, mt: 3 }}>
           <SubmitButton type="submit" variant="contained" color="primary" size="large" onClick={handleSubmit} >Add</SubmitButton>
         </FormControl> 
-      </Box>
-    
-      {/* <Box sx={{maxWidth: 600, height: 88, backgroundColor: 'primary.main', mb: 1, mt: 2 }}>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="enter new item" onChange={handleChange} value = {newItem.name}/>
-          <label>
-            Choose a category
-            <select name="category_id" onChange={handleChange} value = {newItem.category_id}>
-              <option value={1}>Travel</option>
-              <option value={2}>LifeStyle</option>
-              <option value={3}>Experience</option>
-            </select>
-          </label>        
-          <button type="submit">Add</button>
-        </form>
-      </Box > */}
+      </Box>    
     </div>
-   
   )
 }
 

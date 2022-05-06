@@ -1,12 +1,18 @@
 import React from 'react'
-import {Box, Button, Stack } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import {Box, Button, Stack } from '@mui/material'
 
 const Header = () => {
     const navigate = useNavigate();
     
     const handleClick = (e) => {
-        e.target.name === 'home' ? navigate('/') : navigate(`/${e.target.name}`)
+        if (e.target.name === 'home'){
+            navigate('/')
+            document.title = "Bucket List | Home";
+        } else{
+            navigate(`/${e.target.name}`)
+            document.title = `Bucket List | ${e.target.name}`
+        }
      }
         
     return (

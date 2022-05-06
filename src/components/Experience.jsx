@@ -3,6 +3,7 @@ import Item from './Item'
 import {Box, List, Grid, Typography} from '@mui/material';
 
 const Experience = ({list, onHandleDelete, onHandleEditItem}) => {
+  
   const displayList = list.filter(item => item.category.name === 'experience')
   
   return (
@@ -18,5 +19,6 @@ const Experience = ({list, onHandleDelete, onHandleEditItem}) => {
     </Box>
   )
 }
+
 
 export default Experience

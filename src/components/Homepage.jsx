@@ -1,14 +1,13 @@
 import React from 'react'
-import {Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
+import {Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 
 const Homepage = () => {
-  return (
-    
+  return (    
       <Card sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, borderColor: "primary.main"}}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          “I do believe it’s time for another adventure.” – Unknown
+          <Typography gutterBottom variant="h5"  component="div" >
+          “I do believe it’s time for another adventure.”
           </Typography>          
         </CardContent>
         <CardMedia
@@ -18,8 +17,7 @@ const Homepage = () => {
           alt="Northern Lights"
         />
       </CardActionArea>
-    </Card>
-    
+    </Card>    
   )
 }
 

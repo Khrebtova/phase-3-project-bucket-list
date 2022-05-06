@@ -15,5 +15,4 @@ follow directions for backend [url for backend]
 ### licensing (MIT, optional)
 
 ### Resources
-
 http://bucketlistlists.com/

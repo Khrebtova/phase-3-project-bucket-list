@@ -37,16 +37,14 @@ const Item = ({item, onHandleDelete, onHandleEditItem}) => {
     .catch(err => console.log(err))
   }
 
-
   return (
     <ListItem id={item.id}>
         <Checkbox onChange={handleEdit} checked={markedComplete}/>
-        <ListItemText className="name" primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "can't wait to do this"} />
-       
+        <ListItemText className="name" primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "Can't wait to do this"} />       
         <IconButton aria-label="delete" size="small" onClick={handleDelete}>
           <DeleteIcon fontSize="small" />
         </IconButton>
-      </ListItem>
+    </ListItem>
   )
 }
 
