@@ -15,7 +15,7 @@ const BucketList = ({displayList, onHandleDelete, onHandleEditItem, title}) => {
   }
 
   return (
-    <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, backgroundColor: findColor(title), mb: 1 }}>
+    <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, backgroundColor: findColor(title), ml: 50, mb: 1 }}>
       <Grid >
         <Typography sx={{ ml: 10, mt: 4, mb: 4, color: "background.paper"}} variant="h3" component="div">
           {title}

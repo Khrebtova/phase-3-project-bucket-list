@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Box, Button, Stack } from '@mui/material'
 
-const Header = () => {
+const Header = ({categories}) => {
     const navigate = useNavigate();
     
     const handleClick = (e) => {
@@ -14,14 +14,13 @@ const Header = () => {
             document.title = `Bucket List | ${e.target.name}`
         }
      }
-        
+    const categoryButton = categories.map(category => <Button variant="contained" key={category.id} name={category.name} onClick={handleClick} >{category.name.toUpperCase()}</Button>) 
+
     return (
-        <Box sx={{display: 'block', maxWidth: 600, mb: 1, mt: 1}}>
+        <Box  sx={{display: 'block', maxWidth: 600,  ml: 50, mb: 1, mt: 1}}>
             <Stack direction="row" spacing={8}>
-                <Button variant="contained" size="large" name="home" onClick={handleClick} >Home</Button>            
-                <Button variant="contained" size="large" name="travel" onClick={handleClick} >Travel</Button>
-                <Button variant="contained" size="large" name="lifestyle" onClick={handleClick} >LifeStyle</Button>
-                <Button variant="contained" size="large" name="experience" onClick={handleClick} >Experience</Button>
+                <Button variant="contained" size="large" name="home" onClick={handleClick} >Home</Button>
+                {categoryButton}            
             </Stack>
         </Box>
     )

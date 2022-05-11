@@ -10,7 +10,7 @@ import { dataURL } from './Global';
 
 const App = () => {  
   const [list, setList] = React.useState([]);
-  // const [allCategories, setAllCategories] = React.useState([]);
+  const [allCategories, setAllCategories] = React.useState([]);
 
   React.useEffect(() => {
     document.title = "Bucket List | Home";
@@ -20,10 +20,10 @@ const App = () => {
     .then(data => setList(data))
     .catch(err => console.log(err))
 
-    // fetch(dataURL+`/categories`)
-    // .then(res => res.json())
-    // .then(data => setAllCategories(data))
-    // .catch(err => console.log(err))
+    fetch(dataURL+`/categories`)
+    .then(res => res.json())
+    .then(data => setAllCategories(data))
+    .catch(err => console.log(err))
   }, []);
 
   let displayList = list;
@@ -46,8 +46,8 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Header />
-        <NewItemForm onHandleAddItem={handleAddItem}/>
+        <Header categories={allCategories}/>
+        <NewItemForm onHandleAddItem={handleAddItem} categories={allCategories}/>
         <Routes>
           <Route path="/" element={<Homepage  />} />
           <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />

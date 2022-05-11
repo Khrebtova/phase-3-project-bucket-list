@@ -3,7 +3,7 @@ import {Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/ma
 
 const Homepage = () => {
   return (    
-      <Card sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, borderColor: "primary.main"}}>
+      <Card sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, ml: 50, borderColor: "primary.main"}}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5"  component="div" >

@@ -2,7 +2,7 @@ import React from 'react'
 import { dataURL, headers } from '../Global'
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, TextField, Button, Select, MenuItem, FormControl } from '@mui/material'
+import { Box, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material'
 
 const SubmitButton = styled(Button)({
   backgroundColor: 'paper',
@@ -18,22 +18,22 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
   
   const defaultData = {
     "name": "",
-    "category_id": "1"
+    "category_id": ""
   }
-
+  
   const [newItem, setNewItem] = React.useState(defaultData)
-    
+  
   const handleChange = (e) => {
     let key = e.target.name;
     let value = e.target.value;
     let formData = { ...newItem, [key]: value };
     setNewItem(formData);  
   } 
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (newItem.name === '') {
-      alert('Please enter a name')
+    if (newItem.name === '' || newItem.category_id === '') {
+      alert('Please enter a name and category')
     } else {
       fetch(dataURL, {
         method: 'POST',
@@ -51,18 +51,19 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
     }
     setNewItem(defaultData) 
   }
-
+  
+  const selectOption = categories.map(category => <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>)
+  
   return (
     <div>   
-      <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600,   mb: 1, mt: 1 , backgroundColor: 'primary.main'}}>
+      <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, mb: 1, mt: 1, ml: 50, backgroundColor: 'primary.main'}}>
         <FormControl sx={{ m: 1, width: 300, mt: 3, bgcolor: 'background.paper'  }}>
           <TextField variant="outlined" label="Enter new item to your list" name="name" placeholder="enter new item" onChange={handleChange} value = {newItem.name}/>
          </FormControl>    
         <FormControl sx={{ m: 1, width: 150, mt: 3, bgcolor: 'background.paper' }}>
-          <Select name="category_id" label="Category" onChange={handleChange} value = {newItem.category_id} >
-            <MenuItem value={1}>Travel</MenuItem>
-            <MenuItem value={2}>LifeStyle</MenuItem>
-            <MenuItem value={3}>Experience</MenuItem>
+          <InputLabel >Category</InputLabel>
+          <Select name="category_id" label='Select Category' onChange={handleChange} value={newItem.category_id}>                  
+            {selectOption}
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, width: 50, mt: 3 }}>
