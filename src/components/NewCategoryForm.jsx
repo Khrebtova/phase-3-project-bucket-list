@@ -2,7 +2,7 @@ import React from 'react'
 import { dataURL, headers } from '../Global'
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, TextField, Button, Select, MenuItem, FormControl, InputLabel, containerClasses } from '@mui/material'
+import { Box, TextField, Button, Select, MenuItem, FormControl, InputLabel, containerClasses, Stack } from '@mui/material'
 
 const SubmitButton = styled(Button)({
     backgroundColor: 'paper',
@@ -10,10 +10,10 @@ const SubmitButton = styled(Button)({
     fontSize: '1.5rem',
     border: '1px solid white',
     height: 56,
-    width: 100,
+    width: 100  
   })
 
-const NewCategoryForm = ({onHandleAddCategory, categories}) => {
+const NewCategoryForm = ({onHandleAddCategory, onSetIsAddingCategory, categories}) => {
     const navigate = useNavigate();  
   
     const defaultData = {"name": "" }  
@@ -49,18 +49,27 @@ const NewCategoryForm = ({onHandleAddCategory, categories}) => {
         .catch(err => console.log(err))
       }
       setNewItem(defaultData)       
-    }    
-     
+    }
+    
+    const handleCancel=() => {
+      onSetIsAddingCategory(false)
+    }
+
     return (
       <div>   
         <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, mb: 1, mt: 1, ml: 50, backgroundColor: 'primary.light'}}>
-            <FormControl sx={{ m: 1, width: 465, mt: 3, bgcolor: 'background.paper'  }}>
+          
+            <FormControl sx={{ m: 1, width: 350, mt: 3, bgcolor: 'background.paper'  }}>
                 <TextField variant="outlined" label="Enter new Category" name="name" onChange={handleChange} value = {newItem.name}/>
             </FormControl>    
           
-            <FormControl sx={{ m: 1, width: 50, mt: 3 }}>
+            <FormControl sx={{ m: 1, width: 100, mt: 3 }}>
                 <SubmitButton type="submit" variant="outlined" color="primary" size="large" onClick={handleSubmit} >Add</SubmitButton>
             </FormControl> 
+            <FormControl sx={{ m: 1, width: 100, mt: 3 }}>
+                <SubmitButton type="submit" variant="outlined" color="primary" size="large" onClick={handleCancel} >Cancel</SubmitButton>
+            </FormControl>
+            
         </Box>    
       </div>
     )
