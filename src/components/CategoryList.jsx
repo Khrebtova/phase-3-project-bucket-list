@@ -16,6 +16,8 @@ const CategoryList = ({category, onHandleDelete, onHandleEditItem, list}) => {
         }
       }
 
+    const listItems = items.map(item => <Item key= {item.id} item ={item} onHandleDelete={onHandleDelete} onHandleEditItem={onHandleEditItem}/>)
+
   return (
     <Box sx={{display: 'flex', flexWrap: 'wrap', maxWidth: 600, backgroundColor: findColor(), ml: 50, mb: 1 }}>
       <Grid >
@@ -23,7 +25,7 @@ const CategoryList = ({category, onHandleDelete, onHandleEditItem, list}) => {
           {category.name.toUpperCase()}
         </Typography>
         <List sx={{ ml: 10, mb: 10, width: '100%', maxWidth: 400, bgcolor: 'background.paper' }}>
-          {items.map(item => <Item key= {item.id} item ={item} onHandleDelete={onHandleDelete} onHandleEditItem={onHandleEditItem}/>)}
+          {items.length !== 0 ? listItems : <Typography  variant="p" component="div">No Items in this category yet</Typography>}
         </List>        
       </Grid>
     </Box>
