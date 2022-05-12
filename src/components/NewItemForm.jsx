@@ -20,8 +20,8 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
     "name": "",
     "category_id": ""
   }
-  
   const [newItem, setNewItem] = React.useState(defaultData)
+  
   
   const handleChange = (e) => {
     let key = e.target.name;
@@ -42,10 +42,8 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
       })
       .then(res => res.json())
       .then(data => {
-        onHandleAddItem(data)
-        if (data.category_id === 1) { navigate('/travel') }
-        else if (data.category_id === 2){ navigate('/lifestyle')} 
-        else {navigate('/experience')}    
+        onHandleAddItem(data)        
+        navigate(`/${data.category.name}`)          
       })
       .catch(err => console.log(err))
     }

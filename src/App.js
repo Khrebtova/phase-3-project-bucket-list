@@ -2,15 +2,15 @@ import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
-import Travel from './components/Travel';
-import Lifestyle from './components/Lifestyle';
-import Experience from './components/Experience';
 import NewItemForm from './components/NewItemForm';
+import NewCategoryForm from './components/NewCategoryForm';
+import CategoryList from './components/CategoryList';
 import { dataURL } from './Global';
 
 const App = () => {  
   const [list, setList] = React.useState([]);
   const [allCategories, setAllCategories] = React.useState([]);
+  const [isAddingCategory, setIsAddingCategory] = React.useState(false);
 
   React.useEffect(() => {
     document.title = "Bucket List | Home";
@@ -43,16 +43,23 @@ const App = () => {
     setList(newList);
   }
 
+  const handleAddCategory = (newCategory) => {
+    let newAllCategories = [...allCategories, newCategory];
+    setAllCategories(newAllCategories);
+    setIsAddingCategory(false);
+  }
+
+  const categoryRoutes = allCategories.map(category => <Route key={category.id} path={`/${category.name}`} element={<CategoryList  list={list} category={category} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />);
+  
   return (
     <div className="App">
       <Router>
-        <Header categories={allCategories}/>
+        <Header categories={allCategories}  setIsAddingCategory={setIsAddingCategory}/>
+        {isAddingCategory ? <NewCategoryForm  categories={allCategories} onHandleAddCategory={handleAddCategory}/> : null}
         <NewItemForm onHandleAddItem={handleAddItem} categories={allCategories}/>
         <Routes>
           <Route path="/" element={<Homepage  />} />
-          <Route path="/travel" element={<Travel list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
-          <Route path="/lifestyle" element={<Lifestyle list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
-          <Route path="/experience" element={<Experience list={displayList} onHandleDelete={handleDelete} onHandleEditItem={handleEdit}/>} />
+          {categoryRoutes}      
         </Routes>
       </Router>
     </div>

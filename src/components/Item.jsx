@@ -11,9 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 const Item = ({item, onHandleDelete, onHandleEditItem}) => {
   let markedComplete = item.completed;
   
-
   const handleDelete = () => {
-    console.log(`delete ${item.name}`)
     fetch(`${dataURL}/${item.id}`, {
       method: 'DELETE'
     })
@@ -42,7 +40,7 @@ const Item = ({item, onHandleDelete, onHandleEditItem}) => {
         <Checkbox onChange={handleEdit} checked={markedComplete}/>
         <ListItemText className="name" primary={item.name} secondary={markedComplete? "WOOO! I've Done it" : "Can't wait to do this"} />       
         <IconButton aria-label="delete" size="small" onClick={handleDelete}>
-          <DeleteIcon fontSize="small" />
+          <DeleteIcon fontSize="medium" />
         </IconButton>
     </ListItem>
   )
