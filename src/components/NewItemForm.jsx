@@ -21,8 +21,7 @@ const NewItemForm = ({onHandleAddItem, categories}) => {
     "category_id": ""
   }
   const [newItem, setNewItem] = React.useState(defaultData)
-  
-  
+    
   const handleChange = (e) => {
     let key = e.target.name;
     let value = e.target.value;

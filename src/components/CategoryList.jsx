@@ -14,7 +14,7 @@ const CategoryList = ({category, onHandleDelete, onHandleEditItem, list}) => {
         } else {
           return 'success.light'
         }
-      }
+    }
 
     const listItems = items.map(item => <Item key= {item.id} item ={item} onHandleDelete={onHandleDelete} onHandleEditItem={onHandleEditItem}/>)
 

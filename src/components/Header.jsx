@@ -5,7 +5,7 @@ import {Box, Button, Stack } from '@mui/material'
 const Header = ({categories, setIsAddingCategory, setIsDeletingCategory, isDeletingCategory}) => {
     const navigate = useNavigate();
     
-    const handleClick = (e) => {
+    const handleClickNavigate = (e) => {
         if (e.target.name === 'home'){
             navigate('/')
             document.title = "Bucket List | Home";
@@ -15,7 +15,7 @@ const Header = ({categories, setIsAddingCategory, setIsDeletingCategory, isDelet
         }
     }
 
-    const handleAdd = () => {
+    const handleClickAdd = () => {
         setIsAddingCategory(true)
     }
 
@@ -23,17 +23,17 @@ const Header = ({categories, setIsAddingCategory, setIsDeletingCategory, isDelet
         setIsDeletingCategory(!isDeletingCategory)
     }
   
-    const categoryButtons = categories.map(category => <Button variant="contained" size="large" key={category.id} name={category.name} onClick={handleClick} >{category.name.toUpperCase()}</Button>) 
+    const categoryButtons = categories.map(category => <Button variant="contained" size="large" key={category.id} name={category.name} onClick={handleClickNavigate} >{category.name.toUpperCase()}</Button>) 
     
     return (
         <Box  sx={{display: 'block', maxWidth: 600,  ml: 50, mb: 1, mt: 1}}>
             <Stack direction="row" spacing='auto'>
-                <Button variant="contained" size="large" name="home" onClick={handleClick} >Home</Button>
+                <Button variant="contained" size="large" name="home" onClick={handleClickNavigate} >Home</Button>
                 {categoryButtons}
-                <Button variant="outlined" size="small" name="add" onClick={handleAdd} >+</Button>
+                <Button variant="outlined" size="small" name="add" onClick={handleClickAdd} >+</Button>
             </Stack>
-                <Button variant="outlined" size="large" color="error" name="delete" onClick={handleClickDelete}>
-                    {isDeletingCategory ? "No-No cancel" : "Want to delete a category?"}
+                <Button variant="text" size="large" color="error" name="delete" onClick={handleClickDelete}>
+                    {isDeletingCategory ? "No-No Cancel!" : "Want to remove a category from the list? Click here!"}
                 </Button>
         </Box>
     )

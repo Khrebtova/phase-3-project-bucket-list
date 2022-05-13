@@ -7,8 +7,7 @@ import { dataURL } from '../Global'
 const DeleteCategoryForm = ({categories, onHandleDeleteCategory}) => {
     const navigate = useNavigate()
 
-    const handleClick = (e) => {
-        
+    const handleClick = (e) => {        
         fetch(dataURL+'/categories/'+e.target.name, {
             method: 'DELETE'
         })
@@ -17,14 +16,11 @@ const DeleteCategoryForm = ({categories, onHandleDeleteCategory}) => {
             onHandleDeleteCategory(data.id)
             navigate('/')
         })
-        .catch(err => console.log(err))
-        
+        .catch(err => console.log(err))        
     }
 
-
     const deleteCategoryButtons = categories.map(category => <Button variant="outlined" size="large" color="error" key={category.id} name={category.name} onClick={handleClick} > X - {category.name.toUpperCase()}</Button>) 
-    
-  
+ 
     return (
         <Box  sx={{display: 'block', maxWidth: 600,  ml: 50, mb: 1, mt: 1}}>
             <Stack direction="row" spacing='auto'>

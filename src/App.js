@@ -28,8 +28,6 @@ const App = () => {
     .catch(err => console.log(err))
   }, []);
 
-  let displayList = list;
-  
   const handleDelete = (id) => {
     let newList = list.filter(item => item.id !== id);
     setList(newList);
@@ -62,7 +60,12 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Header categories={allCategories}  setIsAddingCategory={setIsAddingCategory} setIsDeletingCategory={setIsDeletingCategory} isDeletingCategory={isDeletingCategory}/>
+        <Header 
+        categories={allCategories}  
+        setIsAddingCategory={setIsAddingCategory} 
+        setIsDeletingCategory={setIsDeletingCategory} 
+        isDeletingCategory={isDeletingCategory}
+        />
         {isAddingCategory ? <NewCategoryForm  categories={allCategories} onHandleAddCategory={handleAddCategory} onSetIsAddingCategory={setIsAddingCategory}/> : null}
         {isDeletingCategory ? <DeleteCategoryForm categories={allCategories} onHandleDeleteCategory={handleDeleteCategory} /> : null}
         <NewItemForm onHandleAddItem={handleAddItem} categories={allCategories}/>

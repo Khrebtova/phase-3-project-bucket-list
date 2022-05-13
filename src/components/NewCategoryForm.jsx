@@ -2,7 +2,7 @@ import React from 'react'
 import { dataURL, headers } from '../Global'
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, TextField, Button, Select, MenuItem, FormControl, InputLabel, containerClasses, Stack } from '@mui/material'
+import { Box, TextField, Button, FormControl} from '@mui/material'
 
 const SubmitButton = styled(Button)({
     backgroundColor: 'paper',
@@ -32,11 +32,11 @@ const NewCategoryForm = ({onHandleAddCategory, onSetIsAddingCategory, categories
       const check = categories.find(category => category.name === newItem.name)
       
       if (newItem.name === '' ) {
-        alert('Please enter a name of a category')
+        alert('Please enter a category name')
       } else if (check) {
-        alert('Category already exists')
+        alert(`${newItem.name} - category already exists`)
       }else {
-        fetch(`${dataURL}/categories`, {
+        fetch(dataURL+`/categories`, {
           method: 'POST',
           headers,
           body: JSON.stringify(newItem)
@@ -66,6 +66,7 @@ const NewCategoryForm = ({onHandleAddCategory, onSetIsAddingCategory, categories
             <FormControl sx={{ m: 1, width: 100, mt: 3 }}>
                 <SubmitButton type="submit" variant="outlined" color="primary" size="large" onClick={handleSubmit} >Add</SubmitButton>
             </FormControl> 
+            
             <FormControl sx={{ m: 1, width: 100, mt: 3 }}>
                 <SubmitButton type="submit" variant="outlined" color="primary" size="large" onClick={handleCancel} >Cancel</SubmitButton>
             </FormControl>
