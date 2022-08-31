@@ -23,6 +23,10 @@ follow directions for backend [url for backend]
 3.  Run `npm start` to view it in your browser
 4.	If you haven't already, follow directions for [Backend](https://github.com/Khrebtova/phase-3-sinatra-react-project) 
 
+## Video walkthough 
+https://youtu.be/28hDdRTBqFo
+
+
 ### Resources
 http://bucketlistlists.com/ - images and quotes.
  
